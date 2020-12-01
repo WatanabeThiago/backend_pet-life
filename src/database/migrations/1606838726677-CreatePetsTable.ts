@@ -1,21 +1,31 @@
-import {Column, MigrationInterface, QueryRunner, Table} from "typeorm";
+import { query } from "express";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateImageUsersTable1606792557549 implements MigrationInterface {
+export class CreatePetsTable1606838726677 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'Image_User',
+                name: 'pets',
                 columns: [
                     {
-                        name: 'u_image_id',
+                        name: 'pet_id',
                         type: 'integer',
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: 'increment'
                     },
                     {
-                        name: 'path',
+                        name: 'pet_name',
+                        type: 'varchar',
+                        isNullable: true,
+                    },
+                    {
+                        name: 'pet_raca',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'pet_about',
                         type: 'varchar'
                     },
                     {
@@ -25,19 +35,18 @@ export class CreateImageUsersTable1606792557549 implements MigrationInterface {
                 ],
                 foreignKeys: [
                     {
-                        name: 'ImageUser',
+                        name: 'PetUser',
                         columnNames: ['user_id'],
                         referencedTableName: 'users',
-                        referencedColumnNames: ['user_id'],
-                 
+                        referencedColumnNames: ['user_id']
                     }
                 ]
-            })
-        )
+            }))
     }
 
+
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('Image_User')
+        await queryRunner.dropTable('pets')
     }
 
 }

@@ -8,10 +8,14 @@ export class CreateUsersTable1606791765945 implements MigrationInterface {
             columns: [
                 {
                     name: 'user_id',
-                    type: 'uuid',
+                    type: 'integer',
                     isPrimary: true,
-                    generationStrategy: 'uuid',
-                    default: 'uuid_generate_v4()'
+                    isUnique: true,
+                    generationStrategy: 'increment',  
+                },
+                {
+                    name: 'user_email',
+                    type: 'varchar'
                 },
                 {
                     name: 'user_name',
@@ -20,6 +24,10 @@ export class CreateUsersTable1606791765945 implements MigrationInterface {
                 {
                     name: 'user_password',
                     type: 'varchar'
+                },
+                {
+                    name: 'user_cellphone',
+                    type: 'integer'
                 }
             ]
         }), true

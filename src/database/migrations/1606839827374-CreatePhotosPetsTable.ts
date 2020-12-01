@@ -1,35 +1,36 @@
-import {Column, MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateImageUsersTable1606792557549 implements MigrationInterface {
+export class CreatePhotosPetsTable1606839827374 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'Image_User',
+                name: 'PhotoPets',
                 columns: [
                     {
-                        name: 'u_image_id',
+                        name: 'p_photo_id',
                         type: 'integer',
-                        isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: 'increment'
+                        generationStrategy: 'increment',
+                        isPrimary: true
                     },
                     {
                         name: 'path',
                         type: 'varchar'
                     },
                     {
-                        name: 'user_id',
+                        name: 'pet_id',
                         type: 'integer'
                     }
+
                 ],
                 foreignKeys: [
                     {
-                        name: 'ImageUser',
-                        columnNames: ['user_id'],
-                        referencedTableName: 'users',
-                        referencedColumnNames: ['user_id'],
-                 
+                        name: 'PetsPhoto',
+                        columnNames: ['pet_id'],
+                        referencedTableName: 'pets',
+                        referencedColumnNames: ['pet_id']
+
                     }
                 ]
             })
@@ -37,7 +38,6 @@ export class CreateImageUsersTable1606792557549 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('Image_User')
     }
 
 }
