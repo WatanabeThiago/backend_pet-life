@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx nodemon —exec ts-node src/index.ts",
+    "dev": "npx nodemon --exec ts-node --files src/index.ts",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
   "keywords": [],
@@ -19,10 +19,12 @@
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/multer": "^1.4.4",
     "@types/node": "^14.14.10",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "multer": "^1.4.2",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.29"

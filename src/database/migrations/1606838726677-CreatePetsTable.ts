@@ -29,14 +29,14 @@ export class CreatePetsTable1606838726677 implements MigrationInterface {
                         type: 'varchar'
                     },
                     {
-                        name: 'user_id',
+                        name: 'pet_user_id',
                         type: 'integer'
                     }
                 ],
                 foreignKeys: [
                     {
                         name: 'PetUser',
-                        columnNames: ['user_id'],
+                        columnNames: ['pet_user_id'],
                         referencedTableName: 'users',
                         referencedColumnNames: ['user_id']
                     }
