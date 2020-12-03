@@ -19,7 +19,7 @@ export default class User {
     user_password: string;
 
     @Column()
-    user_cellphone: number;
+    user_cellphone: string;
 
     @BeforeInsert()
     @BeforeUpdate()
@@ -29,10 +29,10 @@ export default class User {
     }
 
     @OneToMany(() => User_Image, (user_image) => user_image.user)
-    user_image: User_Image;
+    user_image: User_Image[];
 
     @OneToMany(() => Pet, (pet) => pet.user)
-    pet: Pet
+    pet: Pet[]
 
 }
 

@@ -11,6 +11,7 @@ export class CreateUsersTable1606791765945 implements MigrationInterface {
                     type: 'integer',
                     isPrimary: true,
                     isUnique: true,
+                    isGenerated: true,
                     generationStrategy: 'increment',  
                 },
                 {
@@ -27,7 +28,7 @@ export class CreateUsersTable1606791765945 implements MigrationInterface {
                 },
                 {
                     name: 'user_cellphone',
-                    type: 'integer'
+                    type: 'varchar'
                 }
             ]
         }), true
