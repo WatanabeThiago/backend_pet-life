@@ -1,7 +1,9 @@
 import { Request, Response } from 'express'
 import { getRepository, getConnection} from 'typeorm'
+const fs = require('fs');
 
 import User from '../database/entity/User'
+import User_Image from '../database/entity/User_Image'
 
 class UserController {
     async create(req: Request, res: Response) {
@@ -10,7 +12,7 @@ class UserController {
         
         const requestImages = req.files as Express.Multer.File[]
 
-       const user_image = requestImages.map((image) => {
+       const image_user = requestImages.map((image) => {
            return { path: image.filename}
        })
 
@@ -26,7 +28,7 @@ class UserController {
         try {
             const user = UserRepo.create({
                 ...req.body,
-                user_image
+                image_user
             })
 
             await UserRepo.save(user)
@@ -54,7 +56,7 @@ class UserController {
 
     async delete(req: Request, res: Response) {
         const UserRepo = getRepository(User)
-
+        const ImageRepo = getRepository(User_Image)
         const user_id = req.params.user_id;
 
         const userExists = await UserRepo.findOne({where: {user_id}})
@@ -67,6 +69,13 @@ class UserController {
         .createQueryBuilder()
         .delete()
         .from(User)
+        .where({user_id})
+        .execute()
+
+        await getConnection()
+        .createQueryBuilder()
+        .delete()
+        .from(User_Image)
         .where({user_id})
         .execute()
 
